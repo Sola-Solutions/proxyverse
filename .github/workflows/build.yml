@@ -8,10 +8,14 @@ on:
     branches:
       - main
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
   pull_request:
     branches:
       - main
+
+permissions:
+  contents: write
+  id-token: write
 
 env:
   CRX_VER: v0.0.0-${{ github.sha }}
@@ -27,8 +31,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'latest'
-          cache: 'npm'
+          node-version: "latest"
+          cache: "npm"
           cache-dependency-path: package-lock.json
 
       - name: Install dependencies
@@ -73,7 +77,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ./release/*
-
 
   release-edge:
     name: Publish on Edge
