@@ -8,11 +8,10 @@ export const initializePresetProfiles = async () => {
     "profileId"
   >[];
 
-  const saveProfilePromises = presetProfiles.map((profile) =>
-    saveProfile({
+  for (const profile of presetProfiles) {
+    await saveProfile({
       ...profile,
       profileID: crypto.randomUUID(),
-    })
-  );
-  await Promise.all(saveProfilePromises);
+    });
+  }
 };
